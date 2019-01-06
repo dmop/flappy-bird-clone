@@ -41,6 +41,8 @@ let canvas,
             } else {
                 this.velocity += this.gravity;
                 this.y += this.velocity;
+
+                // bird is on botton of the screen
                 if (this.y >= height - s_fg.height - 10) {
                     this.y = height - s_fg.height - 10;
                     if (currentState === states.Game) {
@@ -48,6 +50,14 @@ let canvas,
                         playSound('dies');
                     }
                     this.velocity = this._jump;
+                }
+
+                // bird is on top of the screen
+                if (this.y < 0) {
+                    if (currentState === states.Game) {
+                        currentState = states.Score;
+                        playSound('dies');
+                    }
                 }
 
                 if (this.velocity >= this._jump) {
@@ -167,8 +177,9 @@ function main() {
     height = window.innerHeight;
     let evt = "touchstart";
     if (width >= 500) {
-        width = 320;
-        height = 480;
+        document.body.style.backgroundColor = "#018695";
+        width = 400;
+        height = 600;
         canvas.style.border = "1px solid #000";
         evt = "mousedown"
     }
@@ -253,7 +264,6 @@ function render() {
     }
 
 }
-
 
 function playSound(sound) {
     document.getElementById(sound).play();
