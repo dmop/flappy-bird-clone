@@ -1,3 +1,5 @@
+'use strict';
+
 //sizes
 let canvas,
     ctx,
@@ -6,6 +8,7 @@ let canvas,
 
     // variables
     fgpos = 0,
+    backpos = 0,
     frames = 0,
     score = 0,
     best = 0,
@@ -223,6 +226,7 @@ function update() {
     frames++;
 
     if (currentState !== states.Score) {
+        backpos = (backpos - 2) % 105;
         fgpos = (fgpos - 2) % 14;
     } else {
         best = Math.max(best, score);
@@ -236,11 +240,11 @@ function update() {
 function render() {
     ctx.fillRect(0, 0, width, height);
 
-    s_bg.draw(ctx, 0, height - s_bg.height);
-    s_bg.draw(ctx, s_bg.width, height - s_bg.height);
+    s_bg.draw(ctx, backpos, height - s_bg.height);
+    s_bg.draw(ctx, backpos + s_fg.width, height - s_bg.height);
 
-    pipes.draw(ctx);
     bird.draw(ctx);
+    pipes.draw(ctx);
 
     s_fg.draw(ctx, fgpos, height - s_fg.height);
     s_fg.draw(ctx, fgpos + s_fg.width, height - s_fg.height);

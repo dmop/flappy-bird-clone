@@ -1,3 +1,5 @@
+'use strict';
+
 let s_bird,
     s_bg,
     s_fg,
