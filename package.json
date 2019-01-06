@@ -1,0 +1,23 @@
+{
+  "name": "flappy-bird-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sprite.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmop/flappy-bird-clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmop/flappy-bird-clone/issues"
+  },
+  "homepage": "https://github.com/dmop/flappy-bird-clone#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
