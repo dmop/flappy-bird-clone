@@ -11,6 +11,8 @@
     <title>FlappyJS Clone</title>
 
     <script src="js/sprite.js"></script>
+    <!--<link rel="manifest" href='manifest.json'>-->
+    <script src='service-worker.js'></script>
 
     <style>
         canvas {
@@ -28,5 +30,17 @@
     <audio id="scorePoint" src="assets/audio/sfx_point.ogg"></audio>
     <audio id="dies" src="assets/audio/sfx_die.ogg"></audio>
 </body>
+<script>
+    // Register the service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+</script>
 <script src="js/game.js"></script>
 </html>

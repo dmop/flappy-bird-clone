@@ -35,7 +35,6 @@ let canvas,
             let n = currentState === states.Splash ? 10 : 5;
             this.frame += frames % n === 0 ? 1 : 0;
             this.frame %= this.animation.length;
-
             if (currentState === states.Splash) {
                 this.y = height - 280 + 5 * Math.cos(frames / 10);
                 this.rotation = 0;
@@ -46,6 +45,7 @@ let canvas,
                     this.y = height - s_fg.height - 10;
                     if (currentState === states.Game) {
                         currentState = states.Score;
+                        playSound('dies');
                     }
                     this.velocity = this._jump;
                 }
@@ -90,7 +90,7 @@ let canvas,
                 if (i === 0) {
 
                     if (p.x === bird.x) {
-                        document.getElementById('scorePoint').play();
+                        playSound('scorePoint');
                         score += 1;
                     } else {
                         score += 0;
@@ -111,7 +111,7 @@ let canvas,
 
                     if (r > d1 || r > d2) {
                         currentState = states.Score;
-                        document.getElementById('dies').play();
+                        playSound('dies');
                     }
                 }
                 p.x -= 2;
@@ -252,6 +252,11 @@ function render() {
         s_numberB.draw(ctx, null, 20, score, width2);
     }
 
+}
+
+
+function playSound(sound) {
+    document.getElementById(sound).play();
 }
 
 main();
