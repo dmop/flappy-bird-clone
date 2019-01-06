@@ -25,6 +25,8 @@
     </style>
 </head>
 <body>
+<audio id="scorePoint" src="res/audio/sfx_point.ogg"></audio>
+<audio id="dies" src="res/audio/sfx_die.ogg"></audio>
 <script>
     //sizes
     let canvas,
@@ -117,7 +119,12 @@
                     let p = this._pipes[i];
                     if (i === 0) {
 
-                        score += p.x === bird.x ? 1 : 0;
+                        if (p.x === bird.x) {
+                            document.getElementById('scorePoint').play();
+                            score += 1;
+                        } else {
+                            score += 0;
+                        }
 
                         let cx = Math.min(Math.max(bird.x, p.x), p.x + p.width);
                         let cy1 = Math.min(Math.max(bird.y, p.y), p.y + p.height);
@@ -134,6 +141,7 @@
 
                         if (r > d1 || r > d2) {
                             currentState = states.Score;
+                            document.getElementById('dies').play();
                         }
                     }
                     p.x -= 2;
@@ -168,7 +176,7 @@
                 let mx = evt.offsetX;
                 let my = evt.offsetY;
 
-                if( mx == null || my == null){
+                if (mx == null || my == null) {
                     mx = evt.touches[0].clientX;
                     my = evt.touches[0].clientY;
                 }
