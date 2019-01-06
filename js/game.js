@@ -226,7 +226,7 @@ function update() {
     frames++;
 
     if (currentState !== states.Score) {
-        backpos = (backpos - 2) % 105;
+        // backpos = (backpos - 2) % 105;
         fgpos = (fgpos - 2) % 14;
     } else {
         best = Math.max(best, score);
